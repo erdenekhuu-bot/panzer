@@ -1,1 +1,2 @@
-import './bootstrap';
+// import './component/Header';
+import './component/Startup';

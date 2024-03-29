@@ -42,4 +42,31 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function bridgeToProfile(){
+        return $this->hasOne(ProfileModel::class);
+    }
+    public function bridgeToSkill(){
+        return $this->hasMany(SkillModels::class);
+    }
+    public function bridgeToEmail(){
+        return $this->hasOne(EmailModel::class);
+    }
+    public function bridgeToCompany(){
+        return $this->hasMany(CompanyModel::class);
+    }
+    public function bridgeToCompanyDetail(){
+        return $this->hasMany(CompanyDetailModel::class);
+    }
+    public function addTeam(){
+        return $this->hasMany(Team::class);
+    }
+    public function bridgeToTeam(){
+        return $this->belongsToMany(Team::class,'company_teams');
+    }
+    public function bridgeToPost(){
+        return $this->hasManyThrough(Post::class,Role::class);
+    }
+    public function crossOverRole(){
+        return $this->hasMany(Role::class);
+    }
 }
